@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Оптимизация политики</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        h1 {
+            margin-top: 30px;
+        }
+        code, pre {
+            background: #f5f5f5;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+        .math {
+            margin: 20px 0;
+            font-size: 1.1em;
+            background: #fafafa;
+            padding: 10px;
+            border-left: 4px solid #ccc;
+        }
+    </style>
+</head>
+<body>
 
+<h1>3. Оптимизация политики</h1>
+
+<p>Прежде, напомню, что мы пытаемся максимизировать один из функционалов:</p>
+<ol>
+    <li>
+        \( J = \mathbb{E}_{\substack{s \sim p(s) \\ a \sim \pi_{\theta}(a|s)}} R(s,a,s',a',...) \) – математическое ожидание награды.
+    </li>
+    <li>
+        \( J = \mathbb{E}_{\substack{s \sim p(s) \\ a \sim \pi_{\theta}(a|s)}} G(s,a) \), где \( G(s,a) = r + \gamma \cdot G(s', a') \) – математическое ожидание <b>дисконтированной</b> награды.
+    </li>
+</ol>
+
+<p>Далее для простоты рассуждений:</p>
+<ol>
+    <li>Будем максимизировать первый случай, а именно математическое ожидание награды.</li>
+    <li>Рассмотрим одношаговый процесс \( s \rightarrow a \rightarrow r \).</li>
+</ol>
+
+<p>Тогда оптимизируемый функционал для непрерывных действий и состояний будет иметь следующий вид:</p>
+
+<div class="math">
+\[
+J =
+\underset{\substack{s \sim p(s) \\ a \sim \pi_{\theta}(s|a)}}{\mathbb{E}}
+R(s,a,s',a',...) =
+\int_s p(s) \int_a \pi_{\theta}(a|s) R(s,a) \, \mathrm{d}a \, \mathrm{d}s
+\]
+</div>
+
+<p>где:</p>
+<ul>
+    <li>\( p(s) \) – вероятность посещений состояния \( s \) (может зависеть от политики),</li>
+    <li>\( \pi_{\theta}(a|s) \) – вероятность выбрать действие \( a \) в состоянии \( s \) (политика),</li>
+    <li>\( R(s,a) \) – награда одношаговой траектории.</li>
+</ul>
+
+<p>Интуитивно:</p>
+<ul>
+    <li>\( \int_s p(s) \, ds \) — интеграл по реальному миру,</li>
+    <li>\( \int_a \pi_{\theta}(a|s) R(s,a) \, da \) — интеграл по нейронной сети.</li>
+</ul>
+
+<p>
+    Мы хотим оптимизировать \( \pi_{\theta}(a|s) \), чтобы максимизировать \( J \).
+    Оптимизировать, конечно, хотелось бы градиентным спуском, и для этого надо понять,
+    как продифференцировать \( J \).
+</p>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+
+</body>
+</html>
