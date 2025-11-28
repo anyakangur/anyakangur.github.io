@@ -1,8 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Policy gradient methods</title>
+    
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+
+    <style>
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            margin-top: 30px;
+        }
+        ol {
+            margin: 15px 0 30px 20px;
+        }
+        .math {
+            margin: 20px 0;
+            font-size: 1.1em;
+            background: #fafafa;
+            padding: 10px;
+            border-left: 4px solid #ccc;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,12 +45,18 @@
             Policy Gradient – Федор Ратников </a></li>
     </ol>
 
+    <h2>1. Мотивация</h2>
 
-    <p>
-        <a href="https://anyakangur.github.io/Practical_RL/week06_policy_based.md">
-            Week 6 — Policy Based Reinforcement Learning
-        </a>
-    </p>
+    <h2>2. Политика</h2>
+
+    <h3>2.1. Детерминированная и стохастическая политика</h3>
+    <p>Для начала, вспомним что такое политика в RL.</p>
+    <p>Политика — это “способ выбирать действие”.</p
+    <div class="math">
+        \[
+            \pi(a|s) = \text{вероятность выбрать действие } a \text{ в состоянии } s
+        \]
+    </div>
 
 </body>
 </html>
